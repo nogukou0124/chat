@@ -7,8 +7,10 @@ function publish() {
     // 入力されたメッセージを取得
     const message = $("#message").val();
 
-    // 投稿内容を送信
-    socket.emit("sendMessageEvent", [userName, message]);
+    if (typeof message === "string" && message.trim().length > 0) {
+        // 投稿内容を送信
+        socket.emit("sendMessageEvent", [userName, message]);
+    }
 
     // 投稿後に入力エリアを空にする。
     $("#message").val("");
