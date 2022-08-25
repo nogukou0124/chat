@@ -57,6 +57,6 @@ hackathon-chatapp
 
 * フロント: N, M, S
     * ログイン系(views/index.hbs, public/javascripts/index.js): M
-    * 投稿系(views/room.hbs, public/javascripts/publish.js, public/javascripts/memo.js): S
+    * 投稿系(views/room.hbs, public/javascripts/publish.js, public/javascripts/memo.js, routes/index.js): S
     * 入室系(public/javascripts/enter.js, public/javascripts/exit.js): N
 * バック(socket系): T
