@@ -9,6 +9,6 @@ function enter() {
         alert("ユーザー名を入力してください。");
     } else {
         // 入室処理
-        $('#userName').submit();
+        $('form').submit();
     }    
 }
