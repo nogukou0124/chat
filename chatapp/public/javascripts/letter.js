@@ -21,5 +21,5 @@ function publishLetter() {
 // サーバから受信したレターメッセージを画面上に表示する
 socket.on('receiveLetterEvent', function (data) {
     // dataの中身　[userName, メッセージ内容, 送信時間]
-    $('#thread').prepend('<p>' + data[0] + "さんのレター：" + data[1] + " " + data[2] + '</p>');
+    $('#thread').prepend('<p>' + data[0] + "さんのレター：" + data[1] + '</p>');
 });

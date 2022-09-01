@@ -19,10 +19,14 @@ function publish() {
 
 // サーバから受信した投稿メッセージを画面上に表示する
 socket.on('receiveMessageEvent', function (data) {
+    // $('#thread').prepend('<p>' + data[0] + "さん：" + data[1] + '</p>');
+
+    // 時間を試しに表示
     $('#thread').prepend('<p>' + data[0] + "さん：" + data[1] + " " + create_isoString(data[2]) + '</p>');
 });
 
 
+// 時間表示（日本時間になってない）
 function create_isoString(str_date) {
     const year = str_date.substring(0, 4);  //2022
     const month = str_date.substring(4, 6); //09

@@ -19,10 +19,10 @@ socket.on('recieveHistoryEvent', function (data) {
     for (const mess of data) {
         if (mess.type === "publish") {
             // publishの履歴の作成
-            $('#thread').prepend('<p>' + mess.data[0] + "さん：" + mess.data[1] + " " + create_isoString(mess.data[2]) + '</p>');
+            $('#thread').prepend('<p>' + mess.data[0] + "さん：" + mess.data[1] + '</p>');
         } else if (mess.type === "letter") {
             // letterの履歴の作成
-            $('#thread').prepend('<p>' + mess.data[0] + "さん：" + mess.data[1] + " " + create_isoString(mess.data[2]) + '</p>');
+            $('#thread').prepend('<p>' + mess.data[0] + "さん：" + mess.data[1] + '</p>');
         }
     }
 });
