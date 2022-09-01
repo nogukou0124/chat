@@ -33,9 +33,8 @@ module.exports = function (socket, io) {
                     // reserved_lettersから削除
                     io.sockets.reserved_letters.splice(io.sockets.reserved_letters.indexOf(dic), 1);
 
-                    // dic.letter[2]に投稿時間を追加 (202209012027)
-                    const str_now = now.toISOString().replace(/[^0-9]/g, '').slice(0, -5);
-                    dic.letter.push(str_now);
+                    // dic.letter[2]に投稿時間を追加
+                    dic.letter.push(create_iso(now));
                     // レター送信
                     io.sockets.emit("receiveLetterEvent", dic.letter);
 
@@ -52,3 +51,22 @@ module.exports = function (socket, io) {
     // デモのために1秒おきに設定。
     setInterval(send_letter, 1000);
 };
+
+// Date型からStringの "2022年9月2日 07:04" の形へ変換。
+function create_iso(now) {
+    let Year = now.getFullYear();
+    let Month = now.getMonth()+1;
+    let Date = now.getDate();
+    let Hour = formatTime(now.getHours());
+    let Min = formatTime(now.getMinutes());
+    return Year + "年" + Month + "月" + Date + "日 " + Hour + ":" + Min;
+}
+
+function formatTime(i) {
+    /* 1桁の場合 */
+    if (i < 10) {
+      /* 先頭を0埋め */
+      i = "0" + i;
+    }
+    return i;
+}

@@ -5,12 +5,8 @@ module.exports = function (socket, io) {
     socket.on('sendMessageEvent', function (data) {
         // 投稿時間をdataに追加
         const now = new Date();
-        const str_now = now
-            .toISOString()           //2022-02-05T21:00:00.000Z
-            .replace(/[^0-9]/g, '')  //20220205210000000
-            .slice(0, -5);           //202202052100
         // date[2]に投稿時間を追加
-        data.push(str_now);
+        data.push(create_iso(now));
         io.sockets.emit("receiveMessageEvent", data);
 
         // 履歴に追加
@@ -21,3 +17,23 @@ module.exports = function (socket, io) {
         }
     });
 };
+
+
+// Date型からStringの "2022年9月2日 07:04" の形へ変換。
+function create_iso(now) {
+    let Year = now.getFullYear();
+    let Month = now.getMonth()+1;
+    let Date = now.getDate();
+    let Hour = formatTime(now.getHours());
+    let Min = formatTime(now.getMinutes());
+    return Year + "年" + Month + "月" + Date + "日 " + Hour + ":" + Min;
+}
+
+function formatTime(i) {
+    /* 1桁の場合 */
+    if (i < 10) {
+      /* 先頭を0埋め */
+      i = "0" + i;
+    }
+    return i;
+}

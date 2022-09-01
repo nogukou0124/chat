@@ -22,17 +22,5 @@ socket.on('receiveMessageEvent', function (data) {
     // $('#thread').prepend('<p>' + data[0] + "さん：" + data[1] + '</p>');
 
     // 時間を試しに表示
-    $('#thread').prepend('<p>' + data[0] + "さん：" + data[1] + " " + create_isoString(data[2]) + '</p>');
+    $('#thread').prepend('<p>' + data[0] + "さん：" + data[1] + " " + data[2] + '</p>');
 });
-
-
-// 時間表示（日本時間になってない）
-function create_isoString(str_date) {
-    const year = str_date.substring(0, 4);  //2022
-    const month = str_date.substring(4, 6); //09
-    const day = str_date.substring(6, 8);   //01
-    const hour = str_date.substring(8, 10); //21
-    const min = str_date.substring(10, 12); //00
-    const isoString = year + '-' + month + '-' + day + 'T' + hour + ':' + min;
-    return isoString
-}
