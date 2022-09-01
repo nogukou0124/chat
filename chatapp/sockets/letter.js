@@ -8,7 +8,7 @@ module.exports = function (socket, io) {
         // setTimeout(function() {
         //     io.sockets.emit("receiveLetterEvent", data);
         // }, 5000);
-        
+
 
         // タイムスタンプ方式でレターを送信した時間を記録。
         const now = new Date().getTime();
@@ -24,16 +24,27 @@ module.exports = function (socket, io) {
     // 1分おき(5秒実装の場合は1秒おき)にreserved_lettersを確認して時間が経過していればレター送信処理。
     const send_letter = function(){
         if (io.sockets.reserved_letters !== undefined && io.sockets.reserved_letters.length > 0) {
-            const now = new Date().getTime();
+            const now = new Date();
             for (const dic of io.sockets.reserved_letters) {
                 // 経過時間を計算
-                const diff = now - dic.time;
+                const diff = now.getTime() - dic.time;
                 // 5秒以上経過していれば送信処理
                 if (diff > 5000) {
                     // reserved_lettersから削除
                     io.sockets.reserved_letters.splice(io.sockets.reserved_letters.indexOf(dic), 1);
+
+                    // dic.letter[2]に投稿時間を追加 (202209012027)
+                    const str_now = now.toISOString().replace(/[^0-9]/g, '').slice(0, -5);
+                    dic.letter.push(str_now);
                     // レター送信
                     io.sockets.emit("receiveLetterEvent", dic.letter);
+
+                    // 履歴に追加
+                    if (io.sockets.messages == null) {
+                        io.sockets.messages = [{type: "letter", data: dic.letter}];
+                    } else {
+                        io.sockets.messages.push({type: "letter", data: dic.letter});
+                    }
                 }
             }
         } 

@@ -8,7 +8,7 @@ function publishLetter() {
     const message = $("#message").val();
 
     if (typeof message === "string" && message.trim().length > 0) {
-        // レターを送信
+        // レターを送信 username, メッセージ
         socket.emit("sendLetterEvent", [userName, message]);
     }
 
@@ -20,5 +20,6 @@ function publishLetter() {
 
 // サーバから受信したレターメッセージを画面上に表示する
 socket.on('receiveLetterEvent', function (data) {
-    $('#thread').prepend('<p>' + data[0] + "さん：" + data[1] + '</p>');
+    // dataの中身　[userName, メッセージ内容, 送信時間]
+    $('#thread').prepend('<p>' + data[0] + "さんのレター：" + data[1] + " " + data[2] + '</p>');
 });

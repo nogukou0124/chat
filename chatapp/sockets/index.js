@@ -13,7 +13,7 @@ module.exports = function (server) {
         require("./letter")(socket, io);
 
         // 入室モジュールの呼出
-        require('./enter')(socket);
+        require('./enter')(socket, io);
 
         // 退室モジュールの呼出
         require('./exit')(socket);
