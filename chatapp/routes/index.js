@@ -53,9 +53,17 @@ router.post('/create_room', function (_req, res) {
     return res.redirect(307, `/room/${newRoomId}`)
 })
 
+// API 入室時のロジック
 router.post('/enter_room', (req, res) => {
     console.log("enter room", req.body)
-    res.redirect(307, "/room")
+    return res.redirect(307, "/room")
+})
+
+// API 退出時のロジック
+router.post('/exit_room', (req, res) => {
+    console.log("exit room", req.body)
+    roomController.exitRoom(req.body.roomId, req.body.userName)
+    return res.redirect("/")
 })
 
 // URL直打ち回避用

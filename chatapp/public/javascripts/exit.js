@@ -10,8 +10,26 @@ function exit() {
         userName: userName,
         roomId: roomId,
     })
+    const eH1 = $("h1")[0]
+    const form = document.createElement("form")
+    form.hidden = true
+    eH1.appendChild(form)
+    const eUserName = document.createElement("input")
+    eUserName.hidden = true
+    eUserName.name = "userName"
+    eUserName.value = userName
+    form.appendChild(eUserName)
+    const eRoomId = document.createElement("input")
+    eRoomId.hidden = true
+    eRoomId.name = "roomId"
+    eRoomId.value = roomId
+    form.appendChild(eRoomId)
+    form.method = "POST"
+    form.action = "/exit_room"
+    form.submit()
+    // console.log(userName, roomId)
     // 退室
-    location.href = '/';
+    // location.href = '/';
 }
 
 // サーバから受信した退室メッセージを画面上に表示する
