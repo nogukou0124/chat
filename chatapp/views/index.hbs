@@ -5,11 +5,19 @@
     <div class="row">
         <form method="post" action="/room">
             <div class="index-user_name">
+                ルーム名
+                <input type="text" id="roomName" name="roomName" class="index-room_name_text">
+            </div>
+            <div class="index-user_name">
                 ユーザ名
                 <input type="text" id="userName" name="userName" class="index-user_name_text">
             </div>
             <div class="index-enter">
                 <input type="button" value="入室する"  class="btn btn-info" class="common-button index-enter_button" onclick="enter();" >
+            <div>
+            <div class="index-enter">
+                <input type="button" value="新規ルーム作成"  class="btn btn-info" class="common-button index-newroom_button" onclick="create_room();">
+
             </div>
         </form>
     </div>
