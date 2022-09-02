@@ -3,12 +3,16 @@
         <h1>Node Chat ログイン画面</h1>
     </div>
     <div class="row">
-        <form method="post" action="/room">
+        <form method="post" action="/room12345">
+            <div class="index-user_name">
+                ルーム名
+                <input type="text" id="roomName" name="roomName" class="index-room_name_text" action ="roomName">
+
+            </div>
             <div class="index-user_name">
                 ユーザ名
                 <input type="text" id="userName" name="userName" class="index-user_name_text">
             </div>
-
             <div class="index-enter">
                 <a class="btn btn-outline-info create_room_btn" onclick="createRoom();">部屋を作成する</a>
 

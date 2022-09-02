@@ -15,11 +15,15 @@
                     class="room-message_textarea"
                     placeholder="投稿文を入力してください"
                 ></textarea>
-            </div>
-            <div class="room-submit">
                 <input
                     type="button"
-                    value="投稿"
+                    value="➡"
+                    class="btn btn-info common-button room-publish_button"
+                    onclick="publish();"
+                >
+                <input
+                    type="button"
+                    value="✉"
                     class="btn btn-info common-button room-publish_button"
                     onclick="publish();"
                 >
@@ -50,3 +54,4 @@
 <script src="/javascripts/publish.js"></script>
 <script src="/javascripts/memo.js"></script>
 <script src="/javascripts/exit.js"></script>
+<script src="/javascripts/letter.js"></script>

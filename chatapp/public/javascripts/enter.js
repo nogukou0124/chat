@@ -12,3 +12,17 @@ socket.on('receiveEnterEvent', function (data) {
     $('#thread').prepend('<p>' + data + 'さんが入室しました。' + '</p>');
 });
 
+
+// サーバから受信した履歴を画面上に表示する
+socket.on('recieveHistoryEvent', function (data) {
+    console.log(data);
+    for (const mess of data) {
+        if (mess.type === "publish") {
+            // publishの履歴の作成
+            $('#thread').prepend('<p>' + mess.data[0] + "さん：" + mess.data[1] + '</p>');
+        } else if (mess.type === "letter") {
+            // letterの履歴の作成
+            $('#thread').prepend('<p>' + mess.data[0] + "さん：" + mess.data[1] + '</p>');
+        }
+    }
+});

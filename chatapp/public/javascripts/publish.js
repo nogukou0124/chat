@@ -8,7 +8,7 @@ function publish() {
     const message = $("#message").val();
 
     if (typeof message === "string" && message.trim().length > 0) {
-        // 投稿内容を送信
+        // 投稿内容を送信 username, メッセージ
         socket.emit("sendMessageEvent", [userName, message]);
     }
 
@@ -19,5 +19,10 @@ function publish() {
 
 // サーバから受信した投稿メッセージを画面上に表示する
 socket.on('receiveMessageEvent', function (data) {
-    $('#thread').prepend('<p>' + data[0] + "さん：" + data[1] + '</p>');
+
+    // $('#thread').prepend('<p>' + data[0] + "さん：" + data[1] + '</p>');
+
+    // 時間を試しに表示
+    $('#thread').prepend('<p>' + data[0] + "さん：" + data[1] + " " + data[2] + '</p>');
 });
+
