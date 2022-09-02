@@ -53,6 +53,17 @@ hackathon-chatapp
 * ...
 * ...
 
+#### ページ遷移
+
+```mermaid
+flowchart LR
+
+LoginPage\n/ --> |btn:login\nmethod:POST\nrequired:user_name,room_id| ChatRoomPage\n/room/:room_id
+ChatRoomPage\n/room/:room_id --> |btn:exit| LoginPage\n/
+LoginPage\n/ -.-> |btn:create_room\nmethod:POST\nrequired:userName\nignored:room_id| CreateRoom\n/create_room
+CreateRoom\n/create_room -.-> |redirect\nmthod:POST| ChatRoomPage\n/room/:room_id
+```
+
 ## 担当
 
 * フロント: N, M, S
