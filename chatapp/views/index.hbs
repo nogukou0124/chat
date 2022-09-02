@@ -2,24 +2,25 @@
     <div class="row">
         <h1>Node Chat ログイン画面</h1>
     </div>
-    <div class="row">
-        <form method="post" action="/room12345">
-            <div class="index-user_name">
-                ルーム名
-                <input type="text" id="roomName" name="roomName" class="index-room_name_text" action ="roomName">
-                
-            </div>
-            <div class="index-user_name">
-                ユーザ名
-                <input type="text" id="userName" name="userName" class="index-user_name_text">
-            </div>
-            <div class="index-enter">
-                <input type="button" value="入室する"  class="btn btn-info" class="common-button index-enter_button" onclick="enter();" 
-                >
-                <input type="button" value="新規ルーム作成"  class="btn btn-info" class="common-button index-newroom_button" onclick="create_room();"
-                >
-            </div>
-        </form>
+    <div class="row form-row">
+        <div class="card">
+            <form method="post" action="/room">
+                <div class="index-user_name">
+                    <label class="form-label">ルーム名</label>
+                    <input type="text" id="roomId" name="roomId" class="index-room_name_text form-control">
+                </div>
+                <div class="index-user_name">
+                    <label class="form-label">ユーザ名</label>
+                    <input type="text" id="userName" name="userName" class="index-user_name_text form-control">
+                </div>
+                <div class="index-enter">
+                    <a class="btn btn-outline-info create_room_btn" onclick="createRoom();">部屋を作成する</a>
+
+                    <input type="button" value="入室する"  class="btn btn-info" class="common-button index-enter_button" onclick="enter();">
+                </div>
+            </form>
+        </div>
+        <div class="createRoom"></div>
     </div>
 </div>
 
