@@ -9,6 +9,8 @@ module.exports = function (socket, io) {
         //     io.sockets.emit("receiveLetterEvent", data);
         // }, 5000);
 
+        //送信中であることを明記
+        socket.emit('sendingLetterEvent', data);
 
         // タイムスタンプ方式でレターを送信した時間を記録。
         const now = new Date().getTime();
@@ -19,7 +21,6 @@ module.exports = function (socket, io) {
             io.sockets.reserved_letters.push({time: now, letter: data});
         }
     });
-
 
     // 1分おき(5秒実装の場合は1秒おき)にreserved_lettersを確認して時間が経過していればレター送信処理。
     const send_letter = function(){
