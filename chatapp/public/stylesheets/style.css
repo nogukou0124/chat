@@ -17,6 +17,7 @@ div {
     margin: 20px;
 }
 
+
 /*
  * ボタンの共通設定
  */
@@ -36,11 +37,21 @@ div {
 }
 
 .index-enter {
-
+    margin-top: 40px;
 }
 
 .index-enter_button {
 
+}
+
+.form-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-row > .card > form {
+    margin: 35px;
 }
 
 /*

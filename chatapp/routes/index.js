@@ -2,6 +2,9 @@
 
 const express = require('express');
 const router = express.Router();
+const RoomController = require('../controller/roomController');
+
+const roomController = new RoomController()
 
 // ログイン画面の表示
 router.get('/', function (_request, response, _next) {
@@ -9,25 +12,50 @@ router.get('/', function (_request, response, _next) {
 });
 
 // チャット画面の表示
-router.post('/room/', function (_request, response, _next) {
-    return response.redirect('/')
+router.post('/room', function (request, response, _next) {
+    console.log('ユーザ名：' + request.body.userName);
+    console.log('ルームID: ' + request.body.roomId);
+
+    return response.redirect(307, `/room/${request.body.roomId}`)
 });
 
 router.post('/room/:roomId', function (request, response, _next) {
     console.log('ユーザ名：' + request.body.userName);
     console.log('ルームID: ' + request.params.roomId);
 
-    return response.render('room', {
-        userName: request.body.userName,
-        roomId: request.params.roomId,
-    });
+    if (roomController.defaultEnterRoom(request.params.roomId, request.body.userName)) {
+        return response.render('room', {
+            userName: request.body.userName,
+            roomId: request.params.roomId,
+        });
+    } else {
+        return response.render('error', {
+            message: "存在しないルームID か 重複するユーザ名 です",
+            error: {
+                status: 404,
+            }
+        })
+    }
 });
 
 // 部屋の新規作成用パス
-router.post('/create_room', function (_req, res, _next) {
+router.post('/create_room', function (_req, res) {
     const now = new Date()
-    const nowStr = `${now.getFullYear()}${now.getMonth()}${now.getDate()}${now.getDay()}${now.getHours()}${now.getMinutes()}${now.getSeconds()}${now.getMilliseconds()}`
-    return res.redirect(307, `/room/${nowStr}`)
+    let newRoomId = `?${now.getFullYear()}?${now.getMonth()}?${now.getDate()}?${now.getDay()}?${now.getHours()}?${now.getMinutes()}?${now.getSeconds()}?${now.getMilliseconds()}?`
+    while (newRoomId.includes("?")) {
+        newRoomId = newRoomId.replace("?", String(Math.floor(Math.random() * 10)))
+    }
+    newRoomId = Number(newRoomId).toString(16)
+    while (newRoomId[newRoomId.length - 1] === "0") {
+        newRoomId = newRoomId.slice(0, -1)
+    }
+    roomController.setNewRoomId(newRoomId)
+    return res.redirect(307, `/room/${newRoomId}`)
+})
+
+router.post('/enter_room', (req, res) => {
+    console.log("enter room", req.body)
+    res.redirect(307, "/room")
 })
 
 // URL直打ち回避用

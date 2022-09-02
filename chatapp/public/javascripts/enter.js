@@ -4,12 +4,19 @@
 
 // 入力されたユーザ名を取得する
 const userName =  $('#userName').val();
+const roomId = $('#roomId').val();
 // 入室メッセージイベントを送信する
-socket.emit("sendEnterEvent", userName);
+socket.emit("sendEnterEvent", {
+    userName: userName,
+    roomId: roomId,
+});
 
 // サーバから受信した入室メッセージを画面上に表示する
 socket.on('receiveEnterEvent', function (data) {
-    $('#thread').prepend('<p>' + data + 'さんが入室しました。' + '</p>');
+    console.log(data, roomId)
+    if (roomId === data.roomId) {
+        $('#thread').prepend('<p>' + data.userName + 'さんが入室しました。' + '</p>');
+    }
 });
 
 
