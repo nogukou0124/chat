@@ -22,6 +22,7 @@ socket.on('receiveMessageEvent', function (data) {
 
     // $('#thread').prepend('<p>' + data[0] + "さん：" + data[1] + '</p>');
 
+    console.log(data)
     // 時間を試しに表示
     $('#thread').prepend('<p>' + data[0] + "さん：" + data[1] + " " + data[2] + '</p>');
 });

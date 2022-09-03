@@ -7,7 +7,7 @@ class RoomController {
   /**
    * {
    *  roomId: strin
-   *  userName: string
+   *  userNames: string[]
    * }[]
    */
   users
@@ -15,10 +15,12 @@ class RoomController {
   /**
    * {
    *  roomId: string
-   *  userName: string
-   *  isLetter: boolean
-   *  message: string
-   *  receivedAt: Date or string or number
+   *  chatInfo: {
+   *   userName: string
+   *   isLetter: boolean
+   *   message: string
+   *   receivedAt: Date or string or number
+   *  }[]
    * }[]
    */
   chatHistory
@@ -35,36 +37,53 @@ class RoomController {
 
   setNewRoomId(roomId) {
     this.roomIds.push(roomId)
-    console.log(this.roomIds)
   }
 
   setNewUser(roomId, userName) {
-    console.log(this.users.filter((u) => u.roomId === roomId).map((u) => u.userName))
-    if (this.users.filter((u) => u.roomId === roomId).map((u) => u.userName).includes(userName)) {
-      return false
-    } else {
-      this.users.push({
-        userName: userName,
+    if (!this.roomIds.includes(roomId)) return false
+
+    let room = this.users.find((u) => u.roomId === roomId)
+    if (room === undefined) {
+      // 新規部屋作成
+      room = {
         roomId: roomId,
-      })
-      console.log(this.users)
+        userNames: [userName],
+      }
+      console.log(userName, " が ", roomId, " を作成し入室しました。")
+      this.users.push(room)
       return true
+    } else {
+      // 既存部屋入室
+      if (!room.userNames.includes(userName)) {
+        room.userNames.push(userName)
+        console.log(userName, " が ", roomId, " に入室しました。")
+        return true
+      }
     }
+    return false
   }
 
   exitRoom(roomId, userName) {
-    for (let i = 0; i < this.users.length; i++) {
-      const user = this.users[i]
-      if (user.roomId === roomId && user.userName === userName) {
-        this.users.splice(i, 1)
-        break
+    const room = this.users.find((u) => u.roomId === roomId)
+
+    if (room) {
+      for (let i = 0; i < room.userNames.length; i++) {
+        const uName = room.userNames[i]
+        if (uName === userName) {
+          room.userNames.splice(i, 1)
+          console.log(userName, "が", roomId, "から退会しました。")
+          break
+        }
+      }
+
+      if (room.userNames.length === 0) {
+        const index = this.users.map((u) => u.roomId).indexOf(roomId)
+        const roomIndex = this.roomIds.indexOf(roomId)
+        this.users.splice(index, 1)
+        this.roomIds.splice(roomIndex, 1)
+        console.log("ユーザがいなくなり", roomId, "が削除されました。")
       }
     }
-    if (this.users.filter((u) => u.roomId === roomId).length === 0) {
-      const index = this.roomIds.indexOf(roomId)
-      this.roomIds.splice(index, 1)
-    }
-    // console.log(this.users, this.roomIds)
   }
 }
 

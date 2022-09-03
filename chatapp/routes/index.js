@@ -61,7 +61,7 @@ router.post('/enter_room', (req, res) => {
 
 // API 退出時のロジック
 router.post('/exit_room', (req, res) => {
-    console.log("exit room", req.body)
+    // console.log("exit room", req.body)
     roomController.exitRoom(req.body.roomId, req.body.userName)
     return res.redirect("/")
 })
