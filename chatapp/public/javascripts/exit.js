@@ -9,7 +9,7 @@ function exit() {
     socket.emit('sendExitEvent', {
         userName: userName,
         roomId: roomId,
-    })
+    });
     const eH1 = $("h1")[0]
     const form = document.createElement("form")
     form.hidden = true

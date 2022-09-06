@@ -5,9 +5,13 @@ module.exports = function (socket, io) {
     socket.on('sendMessageEvent', function (data) {
         // 投稿時間をdataに追加
         const now = new Date();
-        // date[2]に投稿時間を追加
-        data.push(create_iso(now));
-        io.sockets.emit("receiveMessageEvent", data);
+        // data.timeに投稿時間を追加
+        data.time = create_iso(now);
+
+        // 全クライアントに向けて送信
+        // io.sockets.emit("receiveMessageEvent", data);
+        // ルーム内のクライアントに送信
+        io.to(data.roomId).emit("receiveMessageEvent", data);
 
         // 履歴に追加
         if (io.sockets.messages == null) {

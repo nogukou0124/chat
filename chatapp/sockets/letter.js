@@ -34,10 +34,13 @@ module.exports = function (socket, io) {
                     // reserved_lettersから削除
                     io.sockets.reserved_letters.splice(io.sockets.reserved_letters.indexOf(dic), 1);
 
-                    // dic.letter[2]に投稿時間を追加
-                    dic.letter.push(create_iso(now));
+                    // dic.letter.timeに投稿時間を追加
+                    dic.letter.time = create_iso(now);
+
                     // レター送信
-                    io.sockets.emit("receiveLetterEvent", dic.letter);
+                    // io.sockets.emit("receiveLetterEvent", dic.letter);
+                    io.to(dic.letter.roomId).emit("receiveLetterEvent", dic.letter);
+
 
                     // 履歴に追加
                     if (io.sockets.messages == null) {
