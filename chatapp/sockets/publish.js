@@ -8,11 +8,7 @@ module.exports = function (socket, io) {
        
         // data.timeに投稿時間を追加
         data.time = create_iso(now);
-        
-        data.message +=  "<br/>" +create_iso(now);
 
-        // 全クライアントに向けて送信
-        // io.sockets.emit("receiveMessageEvent", data);
         // ルーム内のクライアントに送信
         io.to(data.roomId).emit("receiveMessageEvent", data);
 

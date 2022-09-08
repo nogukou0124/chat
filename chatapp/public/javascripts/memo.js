@@ -11,8 +11,11 @@ function memo() {
 
     if (typeof message === "string" && message.trim().length > 0) {
         // メモの内容を表示
-        // $('#thread').prepend('<p>' + userName + "さんのメモ：" + message + '</p>');
-        $('#thread').prepend('<div class="fukidashi right_message_box">' + userName + "さんのメモ：" + message + "</br>" + create_iso(now)+'</div>');
+        $('#thread').prepend(
+            '<div class="fukidashi right_message_box">' 
+                + '<p class="nopadding">' + userName + "さんのメモ：" + message + "</p>" 
+                + '<p class="nopadding" style="text-align: right; font-size:10px">' + create_iso(now) + '</p>' + 
+            '</div>');
     }
 
     // 投稿後に入力エリアを空にする。

@@ -134,23 +134,45 @@ div {
 .messages {
     color: #333;
     /*テキストを黒にする*/
-    margin-top: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font: 13px "Lucida Grande", Meiryo, Helvetica, Arial, sans-serif;
+}
+
+.sending_letter_messages {
+    color: #333;
+    /*テキストを黒にする*/
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    font: 13px "Lucida Grande", Meiryo, Helvetica, Arial, sans-serif;
 }
 
 .fukidashi {
     margin: 0px;
-    padding: 0 14px;
+    padding-top: 4px;
+    padding-left: 14px;
+    padding-right: 14px;
+    padding-bottom: 0px;
     /*吹き出しがタイムラインの側面にひっつかない様に隙間を開ける*/
     word-wrap: break-word;
     /* 吹き出し内で自動で改行 */
     white-space: normal;
     /*指定widthに合わせて、文字を自動的に改行*/
-    margin-top: 18px;
+    margin-top: 9px;
+    margin-bottom: 9px;
     /*上下の吹き出しがひっつかない様に隙間を入れる*/
     max-width: 100%;
     /*文字が長くなった時に吹き出しがタイムラインからはみ出さない様にする*/
     line-height: 1.3em;
     color: #333;
+}
+.nopadding {
+    margin: 0px;
+    padding: 0px;
+
 }
 
 .left_message_box {

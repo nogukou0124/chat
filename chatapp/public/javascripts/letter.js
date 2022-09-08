@@ -25,19 +25,24 @@ function publishLetter() {
 // サーバから受信したレターメッセージを画面上に表示する
 socket.on('receiveLetterEvent', function (data) {
     // dataの中身　{userName: userName, message:メッセージ内容, time:送信時間}
-    // $('#letterThread').prepend('<p>' + data.userName + "さんのレター：" + data.message + '</p>');
-
     if (data.userName === userName) {
         // 自分のレター
+        // 送信中の表記を削除
+        // $("#sending_letter_message").remove();
+        // 送信中の表記を送信完了にする。
+        $("#sending_letter_message").replaceWith('<div class="sending_letter_messages" id="sending_letter_message">' + data.userName + "さんのレターを送信しました。" + '</div>');
+        // レター内容表記
         $('#thread').prepend(
             '<div class="letter_box right_letter_box">'
-                + data.userName + "さん：" + data.message + " " + 
+                + '<p class="nopadding">' + data.userName + "さん：" + data.message + " " + '</p>'
+                + '<p class="nopadding" style="text-align: right; font-size:10px">' + data.time + '</p>' +
             '</div>');
     } else {
         // 送られてきたレター
         $('#thread').prepend(
             '<div class="letter_box left_letter_box">'
-                + data.userName + "さん：" + data.message + " " + 
+                + '<p class="nopadding">' + data.userName + "さん：" + data.message + " " + '</p>'
+                + '<p class="nopadding" style="text-align: right; font-size:10px">' + data.time + '</p>' +
             '</div>');
     }
 
@@ -46,6 +51,6 @@ socket.on('receiveLetterEvent', function (data) {
 // 送信中であることを明記
 socket.on('sendingLetterEvent', function (data) {
     // dataの中身　{userName: userName, message:メッセージ内容, time:送信時間}
-    $('#thread').prepend('<div class="messages">' + data.userName + "さんのレターを送信中。" + '</div>');
+    $('#thread').prepend('<div class="sending_letter_messages" id="sending_letter_message">' + data.userName + "さんのレターを送信中..." + '</div>');
 });
 
