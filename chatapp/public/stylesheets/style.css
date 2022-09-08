@@ -23,7 +23,9 @@ div {
  */
 
 .common-button {
-    
+    color: #fff;
+    background-color: #8e775d;
+    border-color: #8e775d;
 }
 
 /*

@@ -9,7 +9,8 @@ function memo() {
 
     if (typeof message === "string" && message.trim().length > 0) {
         // メモの内容を表示
-        $('#thread').prepend('<p>' + userName + "さんのメモ：" + message + '</p>');
+        // $('#thread').prepend('<p>' + userName + "さんのメモ：" + message + '</p>');
+        $('#thread').prepend('<div class="fukidashi right_message_box">' + userName + "さんのメモ：" + message + " " + '</div>');
     }
 
     // 投稿後に入力エリアを空にする。
