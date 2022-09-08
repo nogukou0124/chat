@@ -209,6 +209,16 @@ div {
     /*右側の発言だとわかる様に、左側に隙間を入れる*/
 }
 
+.error-container {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+}
+
+.error-message {
+    color: red;
+}
+
 @media screen and (max-width: 992px) {
     .room-background {
         width: 100%;
