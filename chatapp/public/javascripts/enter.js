@@ -5,6 +5,7 @@
 // 入力されたユーザ名を取得する
 const userName =  $('#userName').val();
 const roomId = $('#roomId').val();
+
 // 入室メッセージイベントを送信する
 socket.emit("sendEnterEvent", {
     userName: userName,
@@ -13,10 +14,11 @@ socket.emit("sendEnterEvent", {
 
 // サーバから受信した入室メッセージを画面上に表示する
 socket.on('receiveEnterEvent', function (data) {
+    const now = new Date();
     console.log(data, roomId)
     if (roomId === data.roomId) {
         // $('#thread').prepend('<p>' + data.userName + 'さんが入室しました。' + '</p>');
-        $('#thread').prepend('<div class="messages">' + data.userName + 'さんが入室しました。' + '</div>');
+        $('#thread').prepend('<div class="messages">' + data.userName + 'さんが入室しました。' + "</br>" +create_iso(now) +'</div>');
     }
 });
 
@@ -61,3 +63,22 @@ socket.on('recieveHistoryEvent', function (data) {
         }
     }
 });
+
+// Date型からStringの "2022年9月2日 07:04" の形へ変換。
+function create_iso(now) {
+    let Year = now.getFullYear();
+    let Month = now.getMonth()+1;
+    let Date = now.getDate();
+    let Hour = formatTime(now.getHours());
+    let Min = formatTime(now.getMinutes());
+    return Year + "年" + Month + "月" + Date + "日 " + Hour + ":" + Min;
+}
+
+function formatTime(i) {
+    /* 1桁の場合 */
+    if (i < 10) {
+      /* 先頭を0埋め */
+      i = "0" + i;
+    }
+    return i;
+}
