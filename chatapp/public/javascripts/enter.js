@@ -15,7 +15,8 @@ socket.emit("sendEnterEvent", {
 socket.on('receiveEnterEvent', function (data) {
     console.log(data, roomId)
     if (roomId === data.roomId) {
-        $('#thread').prepend('<p>' + data.userName + 'さんが入室しました。' + '</p>');
+        // $('#thread').prepend('<p>' + data.userName + 'さんが入室しました。' + '</p>');
+        $('#thread').prepend('<div class="messages">' + data.userName + 'さんが入室しました。' + '</div>');
     }
 });
 
@@ -26,10 +27,37 @@ socket.on('recieveHistoryEvent', function (data) {
     for (const mess of data) {
         if (mess.type === "publish") {
             // publishの履歴の作成
-            $('#thread').prepend('<p>' + mess.data.userName + "さん：" + mess.data.message + '</p>');
+            // $('#thread').prepend('<p>' + mess.data.userName + "さん：" + mess.data.message + '</p>');
+            if (mess.data.userName === userName) {
+                // 自分のpublish
+                $('#thread').prepend(
+                    '<div class="fukidashi right_message_box">'
+                        + mess.data.userName + "さん：" + mess.data.message + " " + 
+                    '</div>');
+            } else {
+                // 自分以外のメッセージ
+                $('#thread').prepend(
+                    '<div class="fukidashi left_message_box">'
+                        + mess.data.userName + "さん：" + mess.data.message + " " + 
+                    '</div>');
+            }
+
         } else if (mess.type === "letter") {
             // letterの履歴の作成
-            $('#letterThread').prepend('<p>' + mess.data.userName + "さん：" + mess.data.message + '</p>');
+            // $('#thread').prepend('<p>' + mess.data.userName + "さん：" + mess.data.message + '</p>');
+            if (mess.data.userName === userName) {
+                // 自分のレター
+                $('#thread').prepend(
+                    '<div class="letter_box right_letter_box">'
+                        + mess.data.userName + "さん：" + mess.data.message + " " + 
+                    '</div>');
+            } else {
+                // 送られてきたレター
+                $('#thread').prepend(
+                    '<div class="letter_box left_letter_box">'
+                        + mess.data.userName + "さん：" + mess.data.message + " " + 
+                    '</div>');
+            }
         }
     }
 });

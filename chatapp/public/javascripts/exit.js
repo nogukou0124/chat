@@ -36,6 +36,7 @@ function exit() {
 socket.on('receiveExitEvent', function (data) {
     const roomId = $('#roomId').val();
     if (roomId === data.roomId) {
-        $('#thread').prepend('<p>' + data.userName + 'さんが退出しました。' +  '</p>');
+        // $('#thread').prepend('<p>' + data.userName + 'さんが退出しました。' +  '</p>');
+        $('#thread').prepend('<div class="messages">' + data.userName + 'さんが退出しました。' + '</div>');
     }
 });

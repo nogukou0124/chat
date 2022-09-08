@@ -6,7 +6,7 @@ body {
 }
 
 a {
-    color: #00B7FF;
+    color: #efe5cb;
 }
 
 div {
@@ -106,9 +106,9 @@ div {
 }
 
 .normal {
-  color: #0e7f70;
-  border: 3px solid #ccfff3;
-  background: #c3fcf1;
+  color: #efe5cb;
+  border: 3px solid #efe5cb;
+  background: #efe5cb;
   padding: 1.5em 1em;
   margin: 2em 0;
   font-weight: bold;
@@ -144,3 +144,71 @@ div {
     top: 1px;
     transform: rotate(1.4deg);
   }
+
+
+
+
+
+
+/* thread */
+.messages {
+    color: #333;/*テキストを黒にする*/
+    margin-top: 10px;
+}
+
+.fukidashi {
+    margin: 0px;
+    padding: 0 14px;/*吹き出しがタイムラインの側面にひっつかない様に隙間を開ける*/
+    word-wrap: break-word;/* 吹き出し内で自動で改行 */
+    white-space: normal;/*指定widthに合わせて、文字を自動的に改行*/
+    margin-top: 18px;/*上下の吹き出しがひっつかない様に隙間を入れる*/
+    max-width: 100%;/*文字が長くなった時に吹き出しがタイムラインからはみ出さない様にする*/
+    line-height: 1.3em;
+    color: #333;
+}
+.left_message_box {
+    float: left;/*吹き出しをbms_messagesに対して左寄せ*/
+    background: #bfc9bd;
+    border: 2px solid #bfc9bd;
+    border-radius: 30px 30px 30px 0px;/*左下だけ尖らせて吹き出し感を出す*/
+    margin-right: 50px;/*左側の発言だとわかる様に、吹き出し右側に隙間を入れる*/
+  }
+  .right_message_box {
+    float: right;/*吹き出しをbms_messagesに対して右寄せ*/
+    background: #c1d1e0;
+    border: 2px solid #c1d1e0;
+    border-radius: 30px 30px 0px 30px;/*右下だけ尖らせて吹き出し感を出す*/
+    margin-left: 50px;/*右側の発言だとわかる様に、吹き出し左側に隙間を入れる*/
+  }
+
+.letter_box {
+    position: relative;
+    margin: 2em 0;
+    padding: 1em 2em;
+    background-color: #fff;
+    font-weight: bold;
+    background-color: #fff;
+    background-size: 8px 100%,100% 2em;
+    line-height: 2;
+    padding: 4px 10px 22px 10px;
+}
+
+.left_letter_box {
+    float: left;
+    border-top: solid 2px #bfc9bd;
+    border-bottom: solid 2px #bfc9bd;
+    color: #333;
+    background-image:
+    linear-gradient(90deg, rgba(237, 119, 128, 0) 0%, rgba(237, 119, 128, 0) 50%, #fff 0%, #fff 100%), linear-gradient(180deg, rgba(237, 119, 128, 0) 0%, rgba(237, 119, 128, 0) 95%, #bfc9bd 100%);
+    margin-right: 50px;/*左側の発言だとわかる様に、右側に隙間を入れる*/
+}
+
+.right_letter_box {
+    float: right;
+    border-top: solid 2px #c1d1e0;
+    border-bottom: solid 2px #c1d1e0;
+    color: #333;
+    background-image:
+    linear-gradient(90deg, rgba(237, 119, 128, 0) 0%, rgba(237, 119, 128, 0) 50%, #fff 0%, #fff 100%), linear-gradient(180deg, rgba(237, 119, 128, 0) 0%, rgba(237, 119, 128, 0) 95%, #c1d1e0 100%);
+    margin-left: 50px;/*右側の発言だとわかる様に、左側に隙間を入れる*/
+}
