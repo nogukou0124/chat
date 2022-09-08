@@ -17,6 +17,9 @@ div {
     margin: 20px;
 }
 
+.btnx-orange{
+    background: var(--bs-orange); border: 2px solid var(--bs-orange);         
+}
 
 /*
  * ボタンの共通設定
@@ -83,7 +86,7 @@ div {
     width: 100%;
     padding-left: 1em;
     padding-right: 1em;
-    height: 3em;
+    height: 3em;;
 }
 
 .room-buttons {
