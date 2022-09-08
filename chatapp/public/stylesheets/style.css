@@ -84,7 +84,8 @@ div {
     width: 100%;
     padding-left: 1em;
     padding-right: 1em;
-    height: 3em;;
+    height: 3em;
+    ;
 }
 
 .room-buttons {
@@ -196,4 +197,62 @@ div {
         linear-gradient(90deg, rgba(237, 119, 128, 0) 0%, rgba(237, 119, 128, 0) 50%, #fff 0%, #fff 100%), linear-gradient(180deg, rgba(237, 119, 128, 0) 0%, rgba(237, 119, 128, 0) 95%, #c1d1e0 100%);
     margin-left: 50px;
     /*右側の発言だとわかる様に、左側に隙間を入れる*/
+}
+
+@media screen and (max-width: 992px) {
+    .room-background {
+        width: 100%;
+        margin: 0;
+    }
+
+    .room-background>form {
+        width: 100%;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .room-background>form>div {
+        width: 100%;
+        /* margin: 0;
+        margin-bottom: 10px; */
+    }
+
+    .room-message_textarea {
+        width: 100%;
+    }
+
+    .room-login_user {
+        order: 1;
+        margin: 0;
+        margin-bottom: 10px;
+    }
+
+    .room-exit {
+        order: 2;
+        margin: 0;
+        margin-bottom: 40px;
+    }
+
+    .room-message {
+        order: 3;
+        margin: 0;
+        margin-bottom: 20px;
+    }
+
+    .room-buttons {
+        order: 4;
+        margin: 0;
+        margin-bottom: 10px;
+    }
+
+    .room-thread {
+        order: 5;
+        margin: 0;
+        margin-bottom: 10px;
+    }
+
+    .room-thread>.normal {
+        width: 100%;
+    }
 }
