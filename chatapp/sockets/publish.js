@@ -5,8 +5,11 @@ module.exports = function (socket, io) {
     socket.on('sendMessageEvent', function (data) {
         // 投稿時間をdataに追加
         const now = new Date();
+       
         // data.timeに投稿時間を追加
         data.time = create_iso(now);
+        
+        data.message +=  "<br/>" +create_iso(now);
 
         // 全クライアントに向けて送信
         // io.sockets.emit("receiveMessageEvent", data);
