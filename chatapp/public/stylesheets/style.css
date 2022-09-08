@@ -17,10 +17,6 @@ div {
     margin: 20px;
 }
 
-.btnx-orange{
-    background: var(--bs-orange); border: 2px solid var(--bs-orange);         
-}
-
 /*
  * ボタンの共通設定
  */
