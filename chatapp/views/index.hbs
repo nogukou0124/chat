@@ -1,12 +1,12 @@
 <div class="container">
-    <div class="row">
-        <h1>Node Chat ログイン画面</h1>
+    <div class="row form-row">
+        <h1>letter chat</h1>
     </div>
     <div class="row form-row">
         <div class="card">
             <form method="post" action="/room">
                 <div class="index-user_name">
-                    <label class="form-label">ルーム名</label>
+                    <label class="form-label ">ルーム名</label>
                     <input
                         type="text"
                         placeholder="必須(入室時)"
@@ -26,13 +26,12 @@
                     >
                 </div>
                 <div class="index-enter">
-                    <a class="btn btn-outline-info create_room_btn" onclick="createRoom();">部屋を作成する</a>
+                    <a class="btn  create_room_btn" onclick="createRoom();">部屋を作成する</a>
 
                     <input
                         type="button"
                         value="入室する"
-                        class="btn btn-info"
-                        class="common-button index-enter_button"
+                        class="btn common-button index-enter_button"
                         onclick="enter();"
                     >
                 </div>

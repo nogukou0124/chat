@@ -50,6 +50,16 @@ div {
     margin: 35px;
 }
 
+.create_room_btn {
+    color: #8e775d;
+    background-color: #fff;
+    border-color: #8e775d;
+}
+
+.card {
+    background-color: #efe5cb;
+}
+
 /*
  * チャットルーム画面（room.hbs）に関する設定
  */
