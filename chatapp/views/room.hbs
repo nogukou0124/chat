@@ -1,10 +1,10 @@
-<div class="container">
-    <div class="row">
+<div class="container ">
+    <div class="row form-row">
         <h1>Node Chat チャットルーム</h1>
     </div>
-    <div class="row">
+    <div class="row form-row room-background">
         <form method="post" action="/">
-            <div class="room-login_user">
+            <div class="room-login_user" style="text-align:center">
                 ログインユーザ：{{ userName }}さん<br>
                 ルームID：{{ roomId }}
                 <input id="userName" type="hidden" value="{{ userName }}">
@@ -17,15 +17,18 @@
                     class="room-message_textarea"
                     placeholder="投稿文を入力してください"
                 ></textarea>
+            </div>
+
+            <div class="room-buttons">
                 <input
                     type="button"
-                    value="➡"
+                    value="送信"
                     class="btn btn-info common-button room-publish_button"
                     onclick="publish();"
                 >
                 <input
                     type="button"
-                    value="✉"
+                    value="レター"
                     class="btn btn-info common-button room-publish_button"
                     onclick="publishLetter();"
                 >
@@ -33,13 +36,13 @@
                     type="button"
                     value="メモ"
                     class="btn btn-info common-button room-memo_button"
-                    onclick="memo();"
+                    onclick="memo();"  
                 >
             </div>
             <div class="room-thread">
                 <div class="left card normal" id="thread" ></div>
             </div>
-            <div class="room-exit">
+            <div class="room-exit" style="text-align:center">
                 <input
                     type="button"
                     value="退室する"
