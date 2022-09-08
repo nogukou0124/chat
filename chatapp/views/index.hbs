@@ -7,16 +7,34 @@
             <form method="post" action="/room">
                 <div class="index-user_name">
                     <label class="form-label">ルーム名</label>
-                    <input type="text" id="roomId" name="roomId" class="index-room_name_text form-control">
+                    <input
+                        type="text"
+                        placeholder="必須(入室時)"
+                        id="roomId"
+                        name="roomId"
+                        class="index-room_name_text form-control"
+                    >
                 </div>
                 <div class="index-user_name">
                     <label class="form-label">ユーザ名</label>
-                    <input type="text" id="userName" name="userName" class="index-user_name_text form-control">
+                    <input
+                        type="text"
+                        placeholder="必須"
+                        id="userName"
+                        name="userName"
+                        class="index-user_name_text form-control"
+                    >
                 </div>
                 <div class="index-enter">
                     <a class="btn btn-outline-info create_room_btn" onclick="createRoom();">部屋を作成する</a>
 
-                    <input type="button" value="入室する"  class="btn btn-info" class="common-button index-enter_button" onclick="enter();">
+                    <input
+                        type="button"
+                        value="入室する"
+                        class="btn btn-info"
+                        class="common-button index-enter_button"
+                        onclick="enter();"
+                    >
                 </div>
             </form>
         </div>
